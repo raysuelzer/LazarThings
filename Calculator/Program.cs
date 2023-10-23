@@ -11,16 +11,25 @@ namespace LazarCalculator
     {
         static void Main(string[] args)
         {
+            // Combine the title tune and light show to play the intro
+            // If you want to change intro you can do it in PlayIntro();
+            PlayIntro();
+
+            // Main menu
+            LazarMenu();
+        }
+
+        static void PlayIntro()
+        {
             // here is an example of creating a class and not using a static class
             // 98% of the time you will do this. You can imagine that you could reuse this class
             // but pass in a different ascii art or color
             var lightShow = new LightShow(ConsoleColor.Green, ConsoleColor.Black);
             lightShow.Play();
 
+
             // This is an example of using a static class becuase I am lazy            
             TitleTune.PlayTitleTune();
-
-            LazarMenu();
         }
 
         static void LazarMenu()
