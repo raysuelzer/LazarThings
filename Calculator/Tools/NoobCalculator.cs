@@ -36,7 +36,10 @@ namespace LazarCalculator.Tools
 
             if (op == "+")
             {
-                Console.WriteLine($"{num1} + {num2} = " + (num1 + num2));
+                // Note here: I made this am add method on the class called Add
+                // that returns the result
+                // you would want to do this for all the operations
+                Console.WriteLine($"{num1} + {num2} = {Add(num1, num2)}");
             }
             else if (op == "-")
             {
@@ -66,6 +69,15 @@ namespace LazarCalculator.Tools
             }
 
             PromptUserToContinueOrReturn();
+        }
+
+        // Calculation Methods, private means that only this class knows these methods exist
+        // this is called "Implemenation details". The users of this class don't care how the 
+        // magic happens. 
+
+        private static double Add(double num1, double num2)
+        {
+            return num1 + num2;
         }
 
         // Only methods within NoobClaculator.cs can call this
