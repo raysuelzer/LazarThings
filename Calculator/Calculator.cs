@@ -55,7 +55,13 @@ namespace LazarCalculator
             Console.WriteLine("3: play that sound again!");
             Console.WriteLine("4: play some toejam & earl");
             Console.WriteLine("0: Exit Application");
-            int menuNum = Convert.ToInt32(Console.ReadLine());
+            
+            bool isValid = int.TryParse(Console.ReadLine(), out int menuNum);
+            if (!isValid)
+            {
+                Console.WriteLine("you fool!");
+                LazarMenu();
+            }
 
             if (menuNum == 1)
             {
@@ -200,7 +206,7 @@ namespace LazarCalculator
             Console.WriteLine();
             Console.WriteLine("press Enter to Begin a new calculation or Escape to exit...");
             ConsoleKeyInfo input = Console.ReadKey();
-
+            
             if (input.Key == ConsoleKey.Enter)
             {
                 NoobCalc();
