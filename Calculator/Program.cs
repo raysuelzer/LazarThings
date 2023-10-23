@@ -1,46 +1,26 @@
-﻿using System;
+﻿using LazarCalculator.AudioVisualEffects; // Note I add using here so I can access the classes
+using LazarCalculator.Tools;
+using System;
 using System.Diagnostics;
 
 
 namespace LazarCalculator
 {
-    internal class Calculator
+    internal class Program
     {
         static void Main(string[] args)
         {
-            LightShow();
+            // here is an example of creating a class and not using a static class
+            // 98% of the time you will do this. You can imagine that you could reuse this class
+            // but pass in a different ascii art or color
+            var lightShow = new LightShow(ConsoleColor.Green, ConsoleColor.Black);
+            lightShow.Play();
 
-            TitleTune();
+            // This is an example of using a static class becuase I am lazy            
+            TitleTune.PlayTitleTune();
 
             LazarMenu();
         }
-
-        static void LightShow()
-        {
-            foreach (ConsoleColor color in Enum.GetValues(typeof(ConsoleColor)))
-            {
-                Console.BackgroundColor = color;
-                Console.Clear();
-                Thread.Sleep(1);
-            }
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.Clear();
-
-            Thread.Sleep(500);
-
-            Console.WriteLine("***********************************************************************************************************");
-            Console.WriteLine("*** ** *                       __                        _____            _                        * ** ***");
-            Console.WriteLine("*** ** *                      / /   __ _ ______ _ _ __  /__   \\___   ___ | |___                    * ** ***");
-            Console.WriteLine("*** ** *                     / /   / _` | _ / _' | '__|   / /\\/ _ \\ / _ \\| / __|                   * ** ***");
-            Console.WriteLine("*** ** *                    / /___| (_| |/ / (_| | |     / / | (_) | (_) | \\__ \\                   * ** ***");
-            Console.WriteLine("*** ** *                    \\_____/\\__,_/___\\__,_|_|     \\/   \\___/ \\___/|_|___/                   * ** ***");
-            Console.WriteLine("*** ** *                                                                                           * ** ***");
-            Console.WriteLine("***********************************************************************************************************");
-            
-        }
-
 
         static void LazarMenu()
         {
@@ -65,7 +45,9 @@ namespace LazarCalculator
 
             if (menuNum == 1)
             {
-                NoobCalc();
+                NoobCalculator.Start();
+                // Once noob calc ends, we go back to this menu
+                LazarMenu();
             }
             else if (menuNum == 2)
             {
@@ -73,7 +55,7 @@ namespace LazarCalculator
             }
             else if (menuNum == 3)
             {
-                TitleTune();
+                TitleTune.PlayTitleTune();
             }
             else if (menuNum == 4)
             {
@@ -89,58 +71,7 @@ namespace LazarCalculator
                 Thread.Sleep(1000);
                 LazarMenu();
             }
-        }
-
-        static void NoobCalc()
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.Clear();
-
-            Console.WriteLine("Enter your first number to begin calculations...");
-            double num1 = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine();
-            Console.WriteLine("Enter operation type: +, -, *, /, ^, or % ...");
-            string op = Console.ReadLine();
-
-            Console.WriteLine();
-            Console.WriteLine("Enter your second nubmer...");
-            double num2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine();
-
-            if (op == "+")
-            {
-                Console.WriteLine($"{num1} + {num2} = " + (num1 + num2));
-            }
-            else if (op == "-")
-            {
-                Console.WriteLine($"{num1} - {num2} = " + (num1 - num2));
-            }
-            else if (op == "*")
-            {
-                Console.WriteLine($"{num1} * {num2} = " + (num1 * num2));
-            }
-            else if (op == "/")
-            {
-                Console.WriteLine($"{num1} / {num2} = " + (num1 / num2));
-            }
-            else if (op == "^")
-            {
-                double exponentAnswer = Math.Pow(num1, num2);
-                Console.WriteLine($"{num1} to the power of {num2} = " + exponentAnswer);
-            }
-            else if (op == "%")
-            {
-                double percentAnswer = ((double)num2 / 100) * num1;
-                Console.WriteLine($"{num1}% of {num2} is " + percentAnswer);
-            }
-            else
-            {
-                Console.WriteLine("Woah, Bro. Slow down. This isn't fuckin' NASA...");
-            }
-            NewCalculation();
-        }
+        }       
 
 
         static void HexCalc()
@@ -195,28 +126,7 @@ namespace LazarCalculator
                 Console.WriteLine($"Vertex {i + 1}: ({xCoordinates[i]}, {yCoordinates[i]})");
             }
             NewHexCalculation();
-        }
-
-        static void NewCalculation()
-        {
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("press Enter to Begin a new calculation or Escape to exit...");
-            ConsoleKeyInfo input = Console.ReadKey();
-            
-            if (input.Key == ConsoleKey.Enter)
-            {
-                NoobCalc();
-            }
-            if (input.Key == ConsoleKey.Escape)
-            {
-                LazarMenu();
-            }
-            else NewCalculation();
-        }
+        }       
 
         static void NewHexCalculation()
         {
@@ -237,20 +147,6 @@ namespace LazarCalculator
                 LazarMenu();
             }
             else NewHexCalculation();
-        }
-
-        static void TitleTune()
-        {
-            Console.Beep(784, 225);
-            Console.Beep(392, 225);
-            Console.Beep(784, 225);
-            Console.Beep(330, 225);
-            Console.Beep(784, 225);
-            Console.Beep(659, 225);
-            Console.Beep(1047, 675);
-
-            Thread.Sleep(2000);
-            Console.Clear();
         }
 
         static void ToeJam()
