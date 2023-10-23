@@ -1,4 +1,5 @@
 ﻿using LazarCalculator.AudioVisualEffects; // Note I add using here so I can access the classes
+using LazarCalculator.Helpers;
 using LazarCalculator.Tools;
 using System;
 using System.Diagnostics;
@@ -24,44 +25,28 @@ namespace LazarCalculator
 
         static void LazarMenu()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.Clear();
+            // Display the menu and get user input            
+            int usersChoice = ProgramMenu.MainMenuSelector();
 
-            Console.WriteLine("...Welcome, Lazar...");
-            Console.WriteLine("Which Calculator do you need?");
-            Console.WriteLine("1: noob calc (+,-,*,/,^,%)");
-            Console.WriteLine("2: cartesian hex calc");
-            Console.WriteLine("3: play that sound again!");
-            Console.WriteLine("4: play some toejam & earl");
-            Console.WriteLine("0: Exit Application");
-            
-            bool isValid = int.TryParse(Console.ReadLine(), out int menuNum);
-            if (!isValid)
-            {
-                Console.WriteLine("you fool!");
-                LazarMenu();
-            }
-
-            if (menuNum == 1)
+            if (usersChoice == 1)
             {
                 NoobCalculator.Start();
                 // Once noob calc ends, we go back to this menu
                 LazarMenu();
             }
-            else if (menuNum == 2)
+            else if (usersChoice == 2)
             {
                 HexCalc();
             }
-            else if (menuNum == 3)
+            else if (usersChoice == 3)
             {
                 TitleTune.PlayTitleTune();
             }
-            else if (menuNum == 4)
+            else if (usersChoice == 4)
             {
                 ToeJam();
             }
-            else if (menuNum == 0)
+            else if (usersChoice == 0)
             {
                 Environment.Exit(0);
             }
@@ -73,13 +58,9 @@ namespace LazarCalculator
             }
         }       
 
-
         static void HexCalc()
         {
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.Clear();
+            LazarHelpers.ResetConsole();
 
             Console.Title = "Calculate Cartesian Coordinates of an Equilateral Hexagon";
             Console.WriteLine("Enter your known measurement for the hexagon:");
