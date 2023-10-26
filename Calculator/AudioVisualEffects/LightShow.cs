@@ -31,6 +31,7 @@ namespace LazarCalculator.AudioVisualEffects
 
             Console.Clear(); // Clear the console;
             WriteAsciiArt();
+            Thread.Sleep(1500);
         }
 
 

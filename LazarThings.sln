@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LazarCalculator", "Calculat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test Area", "ColorDemo\Test Area.csproj", "{FB7C7EAE-7DBE-4888-8D23-F4F710A2B900}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestArea2", "TestArea2\TestArea2.csproj", "{B45A6BD3-D32B-4842-A099-F91C93014EC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FB7C7EAE-7DBE-4888-8D23-F4F710A2B900}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB7C7EAE-7DBE-4888-8D23-F4F710A2B900}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB7C7EAE-7DBE-4888-8D23-F4F710A2B900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B45A6BD3-D32B-4842-A099-F91C93014EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45A6BD3-D32B-4842-A099-F91C93014EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45A6BD3-D32B-4842-A099-F91C93014EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45A6BD3-D32B-4842-A099-F91C93014EC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

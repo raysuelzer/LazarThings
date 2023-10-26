@@ -1,44 +1,47 @@
-﻿using LazarCalculator.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using LazarCalculator.AudioVisualEffects;
+using LazarCalculator.Helpers;
+
 
 namespace LazarCalculator
 {
     internal class ProgramMenu
     {
-
-        /**
-         * Displays the main menu and returns the user's selection
-         */
         public static int MainMenuSelector()
         {
-            LazarHelpers.ResetConsole();
+            int[] allowedMenu = new int[5] { 1, 2, 3, 4, 0 };
+            int menuChoice;
 
+            LazarHelpers.ResetConsole();
             Console.WriteLine("...Welcome, Lazar...");
-            Console.WriteLine("Which Calculator do you need?");
+            Console.WriteLine();
+            Console.WriteLine("What do you need?");
+            Console.WriteLine();
             Console.WriteLine("1: noob calc (+,-,*,/,^,%)");
-            Console.WriteLine("2: cartesian hex calc");
+            Console.WriteLine("2: bolt circle calc");
             Console.WriteLine("3: play that sound again!");
             Console.WriteLine("4: play some toejam & earl");
             Console.WriteLine("0: Exit Application");
 
+            menuChoice = GetMenuNumber(allowedMenu);
+            return menuChoice;
+        }
 
-            bool isValid = int.TryParse(Console.ReadLine(), out int menuNum);
-            if (!isValid)
+        private static int GetMenuNumber(int[] allowedMenu)
+        {
+            int menuNum;
+            bool parseCheck = int.TryParse(Console.ReadLine(), out menuNum);
+
+            //As long as boolean is false, it keeps looping input
+            while (!allowedMenu.Contains(menuNum))
             {
-                Console.WriteLine("you lazar!");
-                Thread.Sleep(1000);
-                MainMenuSelector();
+                Console.WriteLine();
+                Console.WriteLine("laaaaazzzzaaaarrrrr.. Try Again...");
+                parseCheck = int.TryParse(Console.ReadLine(), out menuNum);
             }
-
-            // Ideally we would also check that the number is one of the valid menu items
-            // We would also ideally store all the menu items in a list and loop through them
-            // we could use that list to check if the number is valid. I'll leave this for a later
-            // exercise.
             return menuNum;
         }
     }
 }
+
+
